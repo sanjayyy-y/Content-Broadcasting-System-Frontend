@@ -38,7 +38,7 @@ export function Sidebar({ open, onClose }) {
             <span className="flex h-9 w-9 items-center justify-center rounded-md bg-primary text-primary-foreground">
               <Radio className="h-5 w-5" />
             </span>
-            CBS Frontend
+            CBS
           </Link>
           <Button variant="ghost" size="icon" className="lg:hidden" onClick={onClose} aria-label="Close menu">
             <X className="h-5 w-5" />
