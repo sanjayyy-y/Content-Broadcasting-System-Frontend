@@ -12,7 +12,7 @@ export default function LoginPage() {
             <Radio className="h-6 w-6" />
           </span>
           <div className="text-left">
-            <h1 className="text-xl font-semibold">CBS Frontend</h1>
+            <h1 className="text-xl font-semibold">CBS</h1>
             <p className="text-sm text-muted-foreground">Educational broadcast approvals</p>
           </div>
         </div>
