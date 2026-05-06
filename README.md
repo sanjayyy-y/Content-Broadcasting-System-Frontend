@@ -44,4 +44,4 @@ Teacher routes live at `/dashboard`, `/upload`, and `/my-content`. Principal rou
 
 ## Deployment
 
-Deployment link: `TBD`
+Deployment link: `https://content-broadcasting-system-fronten-pearl.vercel.app/`
