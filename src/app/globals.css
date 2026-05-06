@@ -1,0 +1,67 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 210 40% 98%;
+  --foreground: 222 47% 11%;
+  --card: 0 0% 100%;
+  --card-foreground: 222 47% 11%;
+  --primary: 195 82% 31%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 168 54% 94%;
+  --secondary-foreground: 177 80% 18%;
+  --muted: 210 40% 94%;
+  --muted-foreground: 215 16% 42%;
+  --accent: 38 92% 93%;
+  --accent-foreground: 26 83% 23%;
+  --destructive: 0 72% 51%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 214 32% 88%;
+  --input: 214 32% 88%;
+  --ring: 195 82% 31%;
+}
+
+.dark {
+  --background: 222 34% 8%;
+  --foreground: 210 40% 96%;
+  --card: 222 30% 12%;
+  --card-foreground: 210 40% 96%;
+  --primary: 186 78% 44%;
+  --primary-foreground: 222 47% 11%;
+  --secondary: 217 28% 18%;
+  --secondary-foreground: 190 85% 82%;
+  --muted: 217 28% 16%;
+  --muted-foreground: 215 20% 70%;
+  --accent: 28 42% 22%;
+  --accent-foreground: 36 100% 88%;
+  --destructive: 0 63% 45%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 217 28% 22%;
+  --input: 217 28% 22%;
+  --ring: 186 78% 44%;
+}
+
+* {
+  border-color: hsl(var(--border));
+}
+
+body {
+  min-height: 100vh;
+  background: hsl(var(--background));
+  color: hsl(var(--foreground));
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+.page-surface {
+  background:
+    linear-gradient(135deg, rgba(20, 184, 166, 0.08), transparent 34%),
+    linear-gradient(45deg, rgba(245, 158, 11, 0.08), transparent 28%),
+    hsl(var(--background));
+}
