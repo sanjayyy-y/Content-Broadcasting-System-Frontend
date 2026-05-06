@@ -1,0 +1,24 @@
+Content Broadcasting System Frontend Notes
+
+1. Project structure
+The app uses the Next.js 14 App Router under src/app. Route groups keep teacher, principal, and auth sections organized. Principal pages include a real /principal URL segment so the requested /principal/dashboard, /principal/approvals, and /principal/all-content paths work in Next.js without conflicting with the teacher dashboard route.
+
+Reusable UI lives in src/components. Common layout components are in components/common, content display components are in components/content, form components are in components/forms, and dashboard widgets are in components/dashboard. The service layer is isolated in src/services, shared state is in src/context, and page-facing hooks are in src/hooks.
+
+2. Authentication flow
+Login validates credentials against src/lib/mockData.js. On success, the app stores this mock session in localStorage under cbs_auth:
+{ token: "mock-jwt-token", user: { id, name, email, role } }
+
+The same session is mirrored into a cbs_auth cookie because Next.js middleware runs on the server and cannot read browser localStorage. The Axios instance in src/lib/axios.js reads localStorage on each request and attaches Authorization: Bearer mock-jwt-token. Its response interceptor redirects to /login on 401.
+
+3. Role-based routing
+src/middleware.js protects app routes. /live/[teacherId] stays public. /login redirects authenticated users to their own dashboard. /dashboard, /upload, and /my-content are teacher-only. /principal/* is principal-only. If a logged-in user hits the wrong role route, middleware redirects them to the correct dashboard.
+
+4. API integration approach
+No component performs API calls directly. Components call hooks/context methods, and those methods call service files. Each service returns a Promise and simulates network delay with delay(ms). To replace mocks with real APIs later, keep the function signatures and swap the internal mock logic for calls through src/lib/axios.js.
+
+5. State management approach
+AuthContext owns the current session, token, role, login, logout, and auth loading state. ContentContext owns shared content lists, pending approvals, loading, errors, upload, approve, reject, and fetch actions through useReducer. Page-only concerns such as filters, pagination, selected modal item, and form state remain local to the relevant page/component.
+
+6. Assumptions
+Only image content is supported because the requested upload validation allows JPG, PNG, and GIF. Uploaded files use local object URLs for preview in this frontend-only mock. Principal route folders include an extra principal segment to avoid an impossible App Router path collision with the teacher dashboard. Mock data is in memory, so a full browser refresh resets uploaded and approval changes.
